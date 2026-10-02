@@ -1,0 +1,180 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Android Security Terminal</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #000;
+        color: #00ff66;
+        font-family: "Courier New", monospace;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .scanlines {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 3px,
+            rgba(0,255,100,0.04) 4px
+        );
+    }
+
+    .terminal {
+        padding: 18px;
+        height: 100vh;
+        overflow: hidden;
+        text-shadow: 0 0 8px #00ff66;
+    }
+
+    .top {
+        border-bottom: 1px solid #00ff66;
+        padding-bottom: 12px;
+        margin-bottom: 15px;
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .status {
+        margin-top: 6px;
+        font-size: 13px;
+    }
+
+    #logs {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .progressBox {
+        margin-top: 18px;
+        border: 1px solid #00ff66;
+        padding: 4px;
+    }
+
+    #progress {
+        height: 14px;
+        width: 0%;
+        background: #00ff66;
+        box-shadow: 0 0 12px #00ff66;
+    }
+
+    #percent {
+        margin-top: 8px;
+        font-size: 13px;
+    }
+
+    .warning {
+        display: none;
+        margin-top: 25px;
+        border: 1px solid #00ff66;
+        padding: 18px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .prank {
+        margin-top: 12px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="terminal">
+    <div class="top">
+        <div class="title">ANDROID SECURITY TERMINAL</div>
+        <div class="status">● SECURE CONNECTION INITIALIZED</div>
+    </div>
+
+    <div id="logs"></div>
+
+    <div class="progressBox">
+        <div id="progress"></div>
+    </div>
+
+    <div id="percent">SCAN: 0%</div>
+
+    <div class="warning" id="warning">
+        ⚠ SYSTEM SIMULATION COMPLETE ⚠
+        <div class="prank">😂 JUST A PRANK BRO!</div>
+        <div style="font-size:12px;margin-top:10px;">
+            No files, passwords or accounts were accessed.
+        </div>
+    </div>
+</div>
+
+<div class="scanlines"></div>
+
+<script>
+const logs = [
+    "Initializing secure terminal...",
+    "Connecting to remote simulation...",
+    "Establishing encrypted channel...",
+    "Scanning system environment...",
+    "Checking installed applications...",
+    "Analyzing network status...",
+    "Running security diagnostics...",
+    "Generating simulated threat report...",
+    "Finalizing scan..."
+];
+
+const logBox = document.getElementById("logs");
+const progress = document.getElementById("progress");
+const percent = document.getElementById("percent");
+const warning = document.getElementById("warning");
+
+let i = 0;
+let p = 0;
+
+function addLog(text) {
+    const line = document.createElement("div");
+    line.textContent = "> " + text;
+    logBox.appendChild(line);
+}
+
+function run() {
+    if (i < logs.length) {
+        addLog(logs[i]);
+        i++;
+    }
+
+    p += Math.floor(Math.random() * 8) + 4;
+
+    if (p > 100) p = 100;
+
+    progress.style.width = p + "%";
+    percent.textContent = "SCAN: " + p + "%";
+
+    if (p >= 100) {
+        setTimeout(() => {
+            warning.style.display = "block";
+        }, 900);
+        return;
+    }
+
+    setTimeout(run, 900);
+}
+
+run();
+</script>
+
+</body>
+</html>
+```
